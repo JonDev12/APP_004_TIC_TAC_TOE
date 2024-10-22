@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private var gameState = IntArray(9) { -1 }  // -1 representa vacío, 0 para "O" y 1 para "X"
     private var activePlayer = 0  // 0 para el jugador "O", 1 para "X"
     private var gameActive = true
-
+    //private var text = "";
     // Variables para contar los movimientos
     private var playerMoves = 0
     private var iaMoves = 0
