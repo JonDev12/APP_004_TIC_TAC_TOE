@@ -1,6 +1,8 @@
 package ttc.tictac.jon.app_004_tic_tac_toe
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -10,7 +12,7 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     // Variables para controlar el estado del juego
     private var gameState = IntArray(9) { -1 }  // -1 representa vacío, 0 para "O" y 1 para "X"
@@ -35,8 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         // Configurar clics de los botones
         setupButtonClicks()
+
         // Inicializar el contador de movimientos en los TextView
         updateMoveCount()
+
         // Configurar el clic del botón de reinicio
         binding.resetButton.setOnClickListener {
             resetGame()
@@ -77,8 +81,10 @@ class MainActivity : AppCompatActivity() {
             // Cambiar a la IA
             activePlayer = 1
 
-            // Hacer el movimiento de la IA automáticamente después del jugador
-            iaMove()
+            // Retrasar el movimiento de la IA por 1000 milisegundos (1 segundo)
+            Handler(Looper.getMainLooper()).postDelayed({
+                iaMove()
+            }, 1000)  // 1000 milisegundos de retraso
         }
     }
 
@@ -131,8 +137,7 @@ class MainActivity : AppCompatActivity() {
             // Si los tres valores son iguales y no son -1, tenemos un ganador
             if (gameState[a] == gameState[b] && gameState[b] == gameState[c] && gameState[a] != -1) {
                 gameActive = false
-                // Determinar el ganador y mostrar un mensaje
-                // Determinar nombre del ganador usando operador ternario
+
                 val winner = if (gameState[a] == 0) "O" else "X"
                 Toast.makeText(this, "¡$winner ha ganado!", Toast.LENGTH_SHORT).show()
 
