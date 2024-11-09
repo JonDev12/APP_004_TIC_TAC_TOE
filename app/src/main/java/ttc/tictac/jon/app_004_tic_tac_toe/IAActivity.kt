@@ -18,6 +18,7 @@ class IAActivity : AppCompatActivity() {
     private lateinit var binding: ActivityIaactivityBinding
 
     // Variables para controlar el estado del juego
+    private lateinit var name: String
     private var gameState = IntArray(9) { -1 }  // -1 representa vacío, 0 para "O" y 1 para "X"
     private var activePlayer = 0  // 0 para el jugador "O", 1 para "X"
     private var gameActive = true
@@ -37,6 +38,9 @@ class IAActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityIaactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Obtener el nombre del jugador del intent
+        name = intent.getStringExtra("name") ?: "Jugador"
 
         // Configurar clics de los botones
         setupButtonClicks()
@@ -129,7 +133,7 @@ class IAActivity : AppCompatActivity() {
 
     private fun updateMoveCount() {
         // Actualizar el TextView del jugador y de la IA con los movimientos realizados
-        binding.playerTextView.text = "Jugador\n$playerMoves"
+        binding.playerTextView.text = "${name}\n$playerMoves"
         binding.iaTextView.text = "IA\n$iaMoves"
     }
 
@@ -141,7 +145,7 @@ class IAActivity : AppCompatActivity() {
             if (gameState[a] == gameState[b] && gameState[b] == gameState[c] && gameState[a] != -1) {
                 gameActive = false
 
-                val winner = if (gameState[a] == 0) "O" else "X"
+                val winner = if (gameState[a] == 0) "${name}" else "IA"
                 Toast.makeText(this, "¡$winner ha ganado!", Toast.LENGTH_SHORT).show()
 
                 return true
