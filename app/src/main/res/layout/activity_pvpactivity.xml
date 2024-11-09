@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#221E1E"
+    tools:context=".PVPActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/player2_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugador 2, ingresa tu nombre"
+        android:textColor="#FFCA28"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_marginTop="32dp"/>
+
+    <EditText
+        android:id="@+id/player2_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="#FFFFFF"
+        android:hint="Nombre del Jugador 2"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        android:textColor="#FFCA28"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FF9800"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>
